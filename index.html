@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CLIP-UIE Project Page</title>
+    <!-- Bootstrap -->
+    <link href="./CLIP-UIE_files/bootstrap-4.0.0.css" rel="stylesheet">
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1036.0" data-gr-ext-installed="">
+    <div id="page_container">
+        <header>
+            <div class="jumbotron">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+
+                            <h1 class="text-center"> Underwater Image Enhancement by Diffusion Model with Customized CLIP-Classifier</h1>
+                            <p class="text-center">&nbsp</p>
+                            <h5 class="text-center">Shuaixin Liu<sup>a</sup>, Kunqian Li<sup>a</sup><sup>,</sup><sup>*</sup>, Yilin Ding<sup>a</sup>, Qi Qi<sup>b</sup></h5>
+                            <p class="text-center"><sup>a</sup>College of Engineering, Ocean University of China, Qingdao 266100, China</p>
+                            <p class="text-center"><sup>b</sup>College of Computer Science and Technology, Ocean University of China, Qingdao 266100, China</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section>
+
+
+            <div class="container">
+                <p>&nbsp;</p>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-center">
+                        <h2>Abstract</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 text-center  offset-xl-0 col-xl-12">
+                        <p style="text-align:justify"><em>In this paper, we propose a novel underwater image enhancement method, by utilizing the multi-guided diffusion model for iterative enhancement. Unlike other image enhancement tasks, underwater images suffer from the unavailability of real reference images. Although existing works exploit synthetic images, manually selected well-enhanced images as reference images, to train enhancement networks, their enhancement performance always comes with subjective preferences that are inherited from the manual selection. To address this issue, we also use the image synthesis strategy, but the synthetic images derive from in-air natural images degraded into corresponding underwater images, guided by the underwater domain. Based on this strategy, the diffusion model can learn the prior knowledge of image enhancement from the underwater degradation domain to the real in-air natural domain. However, it is inevitable to fine-tune the model to suit downstream tasks, and this may erase the prior knowledge. To mitigate this, we combine the prior knowledge from the in-air natural domain with Contrastive Language-Image Pretraining (CLIP) to train a classifier for controlling the diffusion model generation process. Moreover, for image enhancement tasks, we find that the image-to-image diffusion model and the CLIP-Classifier mainly act in the high-frequency region during the fine-tuning process. Therefore, we propose a fast fine-tuning strategy focusing on the high-frequency region, which can be up to 10 times faster than the traditional strategy. Extensive experiments demonstrate that our method, abbreviated as CLIP-UIE, exhibit a more natural appearance.</em></p>
+                        <p class="text-left">&nbsp;</p>
+                        <h5 class="text-center">
+                           <a href="https://ieeexplore.ieee.org/abstract/document/9965419">[Paper]</a>
+                           <a href="https://github.com/OUCVisionGroup/CLIP-UIE">[Code]</a>
+<!--                            <a href="./SGUIE-Net_files/SGUIE-Net_Suppy.pdf">[Supplementary]</a> -->
+                           <!-- <a href="https://drive.google.com/file/d/1tiTW2iPWeckR9QWebTczJnCSZdtRl5IL/view?usp=sharing">[DataSet (Google Drive Link)]</a>
+                           <a href="https://pan.baidu.com/s/1lcgTkslHnH0aHhM24czJSw?pwd=epdq">[DataSet (Baidu Netdisk Link)]</a> -->
+                        </h5>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="container">
+                    <p>&nbsp;</p>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-center">
+                            <h2>Highlights</h2>
+                            <ol>
+                                <li>
+                                    <p class="text-left">We propose to use color transfer to degrade 500k in-air natural images from INaturalist into underwater images guided by the real underwater domain, overcoming subjective preferences introduced by manual selection of reference images. The pre-trained image-to-image diffusion model is trained from scratch on this synthetic dataset.</p>
+                                </li>
+                                <li>
+                                    <p class="text-left">We propose a CLIP-Classifier that inherits prior knowledge of the in-air natural domain, and then combine it with custom datasets to jointly fine-tune the diffusion model to mitigate catastrophic forgetting and mode collapse. Experiments and ablation studies verify the good performance of the proposed CLIP-UIE and it breaks the limitations of the reference domain to a certain extent.</p>
+                                </li>
+                                <li>
+                                    <p class="text-left">We find that for image enhancement tasks, which require consistent content, the image-to-image diffusion model and the CLIP-Classifier mainly act in high-frequency regions. Therefore, we propose a new fine-tuning strategy that acts only on high-frequency regions, which significantly improves the fine-tuning speed, even up to 10 times.</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-left">
+                            <h2>Pipeline of CLIP-UIE </h2>
+                            <p>&nbsp;</p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-center col-xl-12"> <img src="./CLIP-UIE_files/images/overflow.jpg" width="900" alt="">
+                            <p>&nbsp;</p>
+                            <p class="text-left">Fig 1. The preparation for the pre-trained model. (a) Randomly select template A from the template pool (underwater domain). Then,  the Color Transfer module, guided by template A, degrades a in-air natural image from INaturalist into underwater domain, constructing paired datasets for training image-to-image diffusion model. (b) The image-to-image diffusion model SR3 is trained to learn the prior knowledge, the mapping from the real underwater degradation domain and the real in-air natural domain, and to generate the corresponding enhancement results under the condition of the input synthetic underwater images produced by Color Transfer.</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                        </div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-left">
+                            <h2>New fine-tuning strategy </h2>
+                            <p>&nbsp;</p>
+
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-center col-xl-12"> <img src="./CLIP-UIE_files/images/clip_diffusion.jpg" width="900" alt="">
+                            <p>&nbsp;</p>
+                            <p class="text-left">Fig 2. New fine-tuning strategy. We first adopt a single classifier guidance strategy to guide the reverse diffusion process. Then, we switch to the multi-classifier guidance strategy. With multi-condition guidance, the intermediate results are constrained by both the natural and reference domains, mitigating the damage of fine-tuning to the prior knowledge of the pre-trained model.</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-left">
+                            <h2>Prompt Learning </h2>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-center col-xl-12"> <img src="./CLIP-UIE_files/images/prompt_learning.jpg" width="600" alt="">
+                            <p>&nbsp;</p>
+                            <p class="text-center">Fig 3. Illustration of the prompt learning for CLIP-Classifier. (A) Prompt Initialization. Given two text prompts describing the in-air natural image and underwater image. We encode each text and get the initial in-air natural image prompt and the initial underwater image prompt. (B) Prompt Training. We use the cross-entropy loss to constrain the learnable prompts, aligning learnable prompts and images in the CLIP latent space, by maximizing the cosine similarity for matched pairs. The base model of CLIP is frozen throughout.</p>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-left">
+                            <h2>Qualitative analysis of the effectiveness of the CLIP-Classifier </h2>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-center col-xl-12"> <img src="./CLIP-UIE_files/images/clip_score_images.jpg" width="600" alt="">
+                            <p>&nbsp;</p>
+                            <p class="text-center">Fig 4. Qualitative analysis of the effectiveness of the CLIP-Classifier. (a) CLIP score of the intermediate variable of the image versus time. The time step is set to 2000. The CLIP score curves of the raw and reference images are plotted separately. (b) We calculate the difference in CLIP score between the raw and reference images, then plot the difference curve and label several key time points on the curve.</p>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-left">
+                            <h2>Enhancement Results </h2>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-center col-xl-12"> <img src="./CLIP-UIE_files/images/T200.jpg" width="900" alt="">
+                            <p>&nbsp;</p>
+                            <p class="text-center">Fig 5. Visual comparisons on underwater images from T200 dataset.</p>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-center col-xl-12"> <img src="./CLIP-UIE_files/images/C60.jpg" width="900" alt="">
+                            <p>&nbsp;</p>
+                            <p class="text-center">Fig 6. Visual comparisons on challenging underwater images from C60 dataset.</p>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-center col-xl-12"> <img src="./CLIP-UIE_files/images/SQUID.jpg" width="900" alt="">
+                            <p>&nbsp;</p>
+                            <p class="text-center">Fig 7. Visual comparisons on challenging underwater images from SQUID dataset.</p>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-center col-xl-12"> <img src="./CLIP-UIE_files/images/Color-Check7.jpg" width="900" alt="">
+                            <p>&nbsp;</p>
+                            <p class="text-center">Fig 8. Visual comparisons on underwater images from Color-Checker7 dataset.</p>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+
+                    <!-- <div class="row">
+                        <div class="col-lg-12 mb-4 mt-2 text-left">
+                            <h2>Demo Video</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-center">
+                        <video controls="controls" width="900" height="576" jm_neat="1344787457">
+                            <source src="./SGUIE-Net_files/images/supplementary_video.mp4" type="video/mp4">
+                        </video>
+                        <p>&nbsp;</p>
+                    </div>
+                    <hr> -->
+
+
+
+                    <!-- <div class="row"> </div>
+                </div>
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-left">
+                            <h2>Citation</h2>
+                            <br>
+
+                            <pre>@ARTICLE{2023Beyond,
+  author={Li, Kunqian and Wu, Li and Qi, Qi and Liu, Wenjie and Gao, Xiang and Zhou, Liqin and Song, Dalei},
+  journal={IEEE Transactions on Circuits and Systems for Video Technology}, 
+  title={Beyond Single Reference for Training: Underwater Image Enhancement via Comparative Learning}, 
+  year={2023},
+  volume={33},
+  number={6},
+  pages={2561-2576},
+  doi={10.1109/TCSVT.2022.3225376}}
+                            </pre>
+
+
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-left">
+
+                        <p><span style="color:#000000;font-family:&#39;Courier New&#39;;font-size:15px;">
+                                
+                            </span></p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </div> -->
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./CLUIE-Net_files/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./CLUIE-Net_files/popper.min.js"></script>
+    <script src="./CLUIE-Net_files/bootstrap-4.0.0.js"></script>
+
+
+</body>
+
+</html>
