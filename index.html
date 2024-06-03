@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WaterMono Project Page</title>
+    <!-- Bootstrap -->
+    <link href="./WaterMono_files/bootstrap-4.0.0.css" rel="stylesheet">
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1036.0" data-gr-ext-installed="">
+    <div id="page_container">
+        <header>
+            <div class="jumbotron">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="text-center">WaterMono:Teacher-Guided Anomaly Masking and Enhancement Boosting for Robust Underwater Self-Supervised Monocular Depth Estimation</h1>
+                            <p class="text-center">&nbsp</p>
+                            <h5 class="text-center">Yilin Ding<sup>a</sup>, Kunqian Li<sup>a</sup><sup>,</sup><sup>*</sup>,Han Mei<sup>a</sup>, Shuaixin Liu<sup>a</sup>, Guojia Hou<sup>b</sup></h5>
+                            <p class="text-center"><sup>a</sup>College of Engineering, Ocean University of China, Qingdao 266404, China</p>
+                            <p class="text-center"><sup>b</sup>College of Computer Science and Technology, Qingdao University, Qingdao 266071, China</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section>
+    
+
+        <div class="container">
+            <p>&nbsp;</p>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-center">
+                    <h2>Abstract</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 text-center  offset-xl-0 col-xl-12">
+                    <p style="text-align:justify"><em><br></em></p>
+                    <img src="./WaterMono_files/images/example.gif" width="900" alt="">
+                    <p style="text-align:justify"><em><br></em></p>
+                    <p style="text-align:justify; text-indent: 2em"><em>Depth information serves as a crucial prerequisite for various visual tasks, whether on land or underwater. Recently, self-supervised methods have achieved remarkable performance on several terrestrial benchmarks despite the absence of depth annotations. However, in more challenging underwater scenarios, they encounter numerous brand-new obstacles such as the influence of marine life and degradation of underwater images, which break the assumption of a static scene and bring low-quality images, respectively. Besides, the camera angles of underwater images are more diverse. Fortunately, we have discovered that knowledge distillation presents a promising approach for tackling these challenges. In this paper, we propose WaterMono, a novel framework for depth estimation coupled with image enhancement. It incorporates the following key measures: (1) We present a Teacher-Guided Anomaly Mask to identify dynamic regions within the images; (2) We employ depth information combined with the Underwater Image Formation Model to generate enhanced images, which in turn contribute to the depth estimation task; and (3) We utilize a rotated distillation strategy to enhance the model's rotational robustness. Comprehensive experiments demonstrate the effectiveness of our proposed method for both depth estimation and image enhancement.</em></p>
+                    <p class="text-left">&nbsp;</p>
+                    <h5 class="text-center">
+                        <a href="https://ieeexplore.ieee.org/abstract/document/9965419">[Paper]</a>
+                        <a href="https://github.com/OUCVisionGroup/WaterMono">[Code]</a>
+                    </h5>
+                </div>
+            </div>
+        
+        <hr>
+        <div class="container">
+            <p>&nbsp;</p>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-center">
+                    <h2>Highlights</h2>
+                    <ol>
+                        <li>
+                            <p class="text-left" style="margin-bottom: 1em;">We propose a novel framework for selective knowledge distillation learning and utilize a Teacher-Guided Anomaly Mask (TGAM) to address the diverse dynamic regions underwater without the need for any semantic labels.<br></p>
+                        </li>
+                        <li>
+                            <p class="text-left" style="margin-bottom: 1em;">We exploit the Underwater Image Formation Model (UIFM) to enhance images and achieve improved depth estimation performance along with enhanced images displaying high visual quality.<br></p>
+                        </li>
+                        <li>
+                            <p class="text-left" style="margin-bottom: 1em;">To enhance the model's rotational robustness, we propose a rotated distillation strategy. This allows our model to robustly predict depth even when faced with upside-down images.<br></p>
+                        </li>
+                        <li>
+                            <p class="text-left" style="margin-bottom: 1em;">Through extensive experiments on the challenging FLSea dataset, we demonstrate that our method outperforms the existing state-of-the-art approaches.<br></p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-center">
+                <h2>Pipeline of WaterMono </h2>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 text-center col-xl-12"> <img src="./WaterMono_files/images/pipeline.png" width="900" alt="">
+                    <p>&nbsp;</p>
+                    <p class="text-left">Fig 1. Overview of our WaterMono training pipeline. In the first stage, we conduct self-supervised training for a teacher depth network and a teacher pose network. Using the teacher depth network, we generate pseudo depth labels for input images. In the second stage, we train the student depth network and pose student network from scratch. The training approach for the student networks involves a mixture of self-supervised and supervised techniques. The student networks compute photometric loss on enhanced images and utilizes TGAM to filter out dynamic regions. Pseudo labels, filtered through 3D consistency check, are also employed to supervise the student depth network. Additionally, paired images and pseudo labels under rotated camera angles are generated through rotation transformations for the depth student network's supervised learning.</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+
+            <hr>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-center">
+                    <h2>Results </h2>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-left">
+                    <h2>Image Enhancement Results </h2>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 text-center col-xl-12"> <img src="./WaterMono_files/images/enhancement_results.png" width="900" alt="">
+                    <p>&nbsp;</p>
+                    <p class="text-left">Fig 2. The qualitative comparison of different underwater image enhancement algorithm. The first row comprises the input images, while the second to seventh rows present the outcomes obtained from UDCP, ULAP, Ucolor, TCTL-Net, Sea-thru and our proposed method. Compared to other methods, our method simultaneously satisfies the requirements of improving low contrast, reducing blurriness, and maintaining inter-frame consistency, which are essential for reasonable photometric loss.</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-left">
+                    <h2>Depth Estimation Results </h2>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 text-center col-xl-12"> <img src="./WaterMono_files/images/depth.jpg" width="900" alt="">
+                    <p class="text-left">Fig 3. Qualitative comparison on FLSea OUC test set. The first row consists of input images. Results from DCP, UDCP, ULAP, UW-Net, Monodepth2, HR-Depth, DIFFNet, ManyDepth, MonoViT, Lite-Mono and our method (WaterMono) are listed from the second to the twelfth row. The ground truth is shown at the bottom, where black areas indicate missing depth information in the depth map.</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 text-center col-xl-12"> <img src="./WaterMono_files/images/additional_results.png" width="900" alt="" style="margin-left: 30px;">
+                    <p>&nbsp;</p>
+                    <p class="text-left">Fig 4. Additional qualitative comparisons on FLSea dataset. The error maps show the differences between the estimated depth and the ground truth. Despite the visual similarity of the estimated depth map, our method conducts more accurate depth estimations as revealed by the error maps.</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+
+            <hr>
+                <div class="row"> </div>
+                </div>
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-center">
+                            <h2>Citation</h2>
+                            <br>
+                            <pre>@ARTICLE{None}
+                            </pre>
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 text-left">
+
+                        <p><span style="color:#000000;font-family:&#39;Courier New&#39;;font-size:15px;">
+                                
+                            </span></p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./WaterMono_files/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./WaterMono_files/popper.min.js"></script>
+    <script src="./WaterMono_files/bootstrap-4.0.0.js"></script>
+
+
+</body>
+
+</html>
